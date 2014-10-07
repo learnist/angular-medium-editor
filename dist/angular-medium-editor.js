@@ -1,3 +1,10 @@
+/**
+ * angular-medium-editor
+ * @version v0.0.5 - 2014-10-07
+ * @link https://github.com/thijsw/angular-medium-editor
+ * @author Thijs Wijnmaalen <thijs@wijnmaalen.name>
+ * @license MIT License, http://www.opensource.org/licenses/MIT
+ */
 'use strict';
 angular.module('angular-medium-editor', []).directive('mediumEditor', function () {
   return {
@@ -37,9 +44,10 @@ angular.module('angular-medium-editor', []).directive('mediumEditor', function (
         scope.$apply(function () {
           // If user cleared the whole text, we have to reset the editor because MediumEditor
           // lacks an API method to alter placeholder after initialization
-          if (iElement.html() === '<p><br></p>' || iElement.html() === '') {
+          if (iElement.html() === '<p><br></p>' || iElement.html() === '<br>' || iElement.html() === '<br></br>' || iElement.html() === '') {
+            iElement.innerText = '';
+            iElement.html('');
             // opts.placeholder = placeholder;
-            //iElement.html('<p><br></p>');
             // var editor = new MediumEditor(iElement, opts);
           }
           ctrl.$setViewValue(iElement.html());
